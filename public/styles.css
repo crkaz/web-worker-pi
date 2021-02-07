@@ -1,0 +1,32 @@
+#content {
+    width: 100%;
+    max-width: 11in;
+    padding: 30px;
+    background-color: white;
+    color: black;
+  }
+  
+  #piCanvas {
+    border: 1px solid black;
+  }
+
+#text-log {
+    font-size: 0.75rem;
+}
+
+.centre {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.counter {
+  padding-right: 20px;
+}
+
+#red-hit-count { 
+  color: #fF0000;
+}
+
+#blue-hit-count { 
+  color: #0000FF;
+}

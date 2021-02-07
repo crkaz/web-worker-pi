@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PI Estimator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div id="content" class="centre">
+        <h1>PI Estimator</h1>
+        <hr>
+        <p></p>
+        <div>
+            <div>
+                <label for="show-log-checkbox">Show log: </label>
+                <input type="checkbox" id="show-log-checkbox" onchange="toggleLogging()">
+            </div>
+            <div>
+                <label for="batch-size-textbox">Batch size (higher is slower): </label>
+                <input type="number" id="batch-size-textbox" value="10000" min="1" onkeyup="updateBatchSize()">
+            </div>
+            <div>
+                <button id="start-button" onclick="start()">Start</button>
+                <button id="stop-button" onclick="stop()" disabled>Stop</button>
+            </div>
+        </div>
+        <div>
+            <label>Total: </label><span id="total-hit-count" class="counter"></span>
+            <label>Red: </label><span id="red-hit-count" class="counter"></span>
+            <label>Blue: </label><span id="blue-hit-count" class="counter"></span>
+        </div>
+        <h3 id="pi-estimation">...</h3>
+        <canvas id="piCanvas" height="800" width="800"></canvas>
+        <div id="text-log"></div>
+    </div>
+</body>
+
+</html>
