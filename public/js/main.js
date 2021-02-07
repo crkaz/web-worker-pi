@@ -1,8 +1,9 @@
 const LOGGING_CHECKBOX = document.getElementById("show-log-checkbox");
 const BATCH_TEXTBOX = document.getElementById("batch-size-textbox");
+const WORKER_JS = "js/worker.js";
 const UI = new MyUI();
 
-let worker = new Worker("worker.js");
+let worker = new Worker(WORKER_JS);
 
 function start() {
     toggleUiState();
@@ -14,7 +15,7 @@ function start() {
 function stop() {
     toggleUiState();
     worker.terminate();
-    worker = new Worker("worker.js");
+    worker = new Worker(WORKER_JS);
 }
 
 function updateBatchSize() {

@@ -55,7 +55,7 @@ function updateHitCounters(x, y) {
     if (d2 > R2) {
         redHits += 1
         colour = "#FF0000";
-} else {
+    } else {
         blueHits += 1;
     }
     postMessage({"type" : "A", "x": x, "y": y, "colour": colour});
