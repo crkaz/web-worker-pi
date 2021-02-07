@@ -30,7 +30,7 @@ function updateBatchSize(value) {
     batchSize = value;
 }
 
-// --
+// ---
 
 function parseMessage(message) {
     let cmd = "";
