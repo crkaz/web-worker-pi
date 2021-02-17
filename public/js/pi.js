@@ -33,7 +33,7 @@ addEventListener("message", function(message) {
 /** Starts PI estimation when the CMD_START command is received. */
 function start() {
     while (true) {
-        startTime = new Date().getTime(); //// performance.now() is also an option but browser support and performance varies.
+        startTime = new Date().getTime();
         for (let i = 0; i < batchSize; i += 1){
             const coords = generateCoords();
             updateHitCounters(coords.x, coords.y);
