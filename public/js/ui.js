@@ -58,7 +58,7 @@ class MyUI {
         RED_HITS.innerText = data.redHits;
         BLUE_HITS.innerText = data.blueHits;
         PI_ESTIMATION.innerText = data.estimation;
-        this.log(data.estimation);
+        this.log(data.estimation + " (" + data.deltaTime + "ms)");
     }
 
     // Toggle a primitive log of PI estimations.

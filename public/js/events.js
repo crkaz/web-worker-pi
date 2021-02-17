@@ -21,11 +21,12 @@ class UpdateCountersEvent extends Event {
 
 /** Communicates counters and estimation data. */
 class UpdateEstimationEvent extends Event {
-    constructor(estimation, totalHits, blueHits, redHits){
+    constructor(estimation, totalHits, blueHits, redHits, deltaTime){
         super("B");
         this.estimation = estimation;
         this.totalHits = totalHits;
         this.blueHits = blueHits;
         this.redHits = redHits;
+        this.deltaTime = deltaTime;
     }
 }

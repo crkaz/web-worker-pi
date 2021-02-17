@@ -18,6 +18,7 @@ const BLUE = "#0000FF";
 let blueHits = 0;
 let redHits = 0;
 let batchSize = 5000;
+let startTime;
 
 /** Listener for Worker message, "message". */
 addEventListener("message", function(message) {
@@ -32,8 +33,9 @@ addEventListener("message", function(message) {
 /** Starts PI estimation when the CMD_START command is received. */
 function start() {
     while (true) {
+        startTime = new Date().getTime(); //// performance.now() is also an option but browser support and performance varies.
         for (let i = 0; i < batchSize; i += 1){
-            const coords = generateCoords().next().value;
+            const coords = generateCoords();
             updateHitCounters(coords.x, coords.y);
         }
         postMessage(estimatePi());
@@ -62,10 +64,10 @@ function parseMessage(message) {
 }
 
 /** Determines a new point within the dimensions of the Canvas. */
-function* generateCoords() {
+function generateCoords() {
     const x = Math.floor((Math.random() * WIDTH) - HALF_WIDTH); 
     const y = Math.floor((Math.random() * WIDTH) - HALF_WIDTH);
-    yield {"x": x, "y": y};
+    return {"x": x, "y": y};
 }
 
 /** Determines whether a point lands inside the circle on the Canvas and
@@ -87,5 +89,6 @@ function updateHitCounters(x, y) {
 function estimatePi() {
     const totalHits = blueHits + redHits;
     const estimation = redHits != 0 ?  4 * (blueHits / totalHits) : 0;
-    return new UpdateEstimationEvent(estimation, totalHits, blueHits, redHits);
+    const deltaTime = new Date().getTime() - startTime;
+    return new UpdateEstimationEvent(estimation, totalHits, blueHits, redHits, deltaTime);
 }
