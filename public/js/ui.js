@@ -39,7 +39,7 @@ class MyUI {
         CTX.fillStyle = WHITE;
         CTX.fillRect(-HALF_WIDTH, -HALF_WIDTH, WIDTH, WIDTH);
         this.drawCircle();
-        this.updateCounters({"totalHits":0, "redHits":0, "blueHits":0,  "estimation":0});
+        this.updateCounters({"totalHits":0, "redHits":0, "blueHits":0,  "estimation":"..."});
         TEXT_LOG.innerText = "";
     }
 
