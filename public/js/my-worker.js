@@ -19,5 +19,5 @@ class MyWorker {
     }
 
     /** */
-    static initialise() { MyWorker.worker = new Worker("js/worker.js"); }
+    static initialise() { MyWorker.worker = new Worker("js/pi.js"); }
 }
