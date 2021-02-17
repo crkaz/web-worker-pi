@@ -21,7 +21,7 @@ const WHITE = "#FFFFFF";
 const BLACK = "#000000";
 // #endregion
 
-let loggingEnabled = false;
+let loggingEnabled = true;
 
 class MyUI {
 
