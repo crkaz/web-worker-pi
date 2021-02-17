@@ -17,17 +17,14 @@ const BLUE = "#0000FF";
 
 let blueHits = 0;
 let redHits = 0;
-let batchSize = 5000;
-let startTime;
+let batchSize = 0;
+let startTime = 0;
 
 /** Listener for Worker message, "message". */
 addEventListener("message", function(message) {
     const parsedMessage = parseMessage(message.data);
-    switch (parsedMessage[0]) {
-        case "CMD_START": start(); break;
-        case "CMD_UPDATE_BATCH": updateBatchSize(parsedMessage[1]); break;
-        default: console.log("Unrecognised command from main thread.");
-    }
+    batchSize = parsedMessage[1];
+    parsedMessage[0] === "CMD_START" ? start() : null ;
 });
 
 /** Starts PI estimation when the CMD_START command is received. */
@@ -40,11 +37,6 @@ function start() {
         }
         postMessage(estimatePi());
     }
-}
-
-/** Updates the batchSize var when the CMD_UPDATE_BATCH command is received. */
-function updateBatchSize(value) {
-    this.batchSize = value;
 }
 
 // ---

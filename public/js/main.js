@@ -17,7 +17,7 @@ function start() {
         UI.reset();
         UI.log("Running...");
         MyWorker.Instance.addEventListener("message", function(message) { message.data.type === "A" ? UI.updateCanvas(message.data) : UI.updateCounters(message.data); });
-        MyWorker.Instance.postMessage("CMD_START")
+        MyWorker.Instance.postMessage("CMD_START " + BATCH_TEXTBOX.value)
     });
 }
 
