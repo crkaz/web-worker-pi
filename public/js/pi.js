@@ -17,7 +17,7 @@ const BLUE = "#0000FF";
 
 let blueHits = 0;
 let redHits = 0;
-let batchSize = 1;
+let batchSize = 5000;
 
 /** Listener for Worker message, "message". */
 addEventListener("message", function(message) {
@@ -33,7 +33,7 @@ addEventListener("message", function(message) {
 function start() {
     while (true) {
         for (let i = 0; i < batchSize; i += 1){
-            const coords = generateCoords();
+            const coords = generateCoords().next().value;
             updateHitCounters(coords.x, coords.y);
         }
         postMessage(estimatePi());
@@ -42,7 +42,6 @@ function start() {
 
 /** Updates the batchSize var when the CMD_UPDATE_BATCH command is received. */
 function updateBatchSize(value) {
-    console.log("Worker recieved cmd: CMD_UPDATE_BATCH " + value);
     this.batchSize = value;
 }
 
@@ -63,10 +62,10 @@ function parseMessage(message) {
 }
 
 /** Determines a new point within the dimensions of the Canvas. */
-function generateCoords() {
+function* generateCoords() {
     const x = Math.floor((Math.random() * WIDTH) - HALF_WIDTH); 
     const y = Math.floor((Math.random() * WIDTH) - HALF_WIDTH);
-    return {"x": x, "y": y};
+    yield {"x": x, "y": y};
 }
 
 /** Determines whether a point lands inside the circle on the Canvas and

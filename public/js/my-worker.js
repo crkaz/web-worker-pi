@@ -10,8 +10,8 @@ class MyWorker {
         return MyWorker.worker;  
     }
 
-    /** Ensures instance is initalised before trying to use it. */
-    static initaliseThenDo(f, t = 100) { 
+    /** Ensures instance is initialised before trying to use it. */
+    static initialiseThenDo(f, t = 100) { 
         MyWorker.initialise();
         setTimeout(() => {
             f();

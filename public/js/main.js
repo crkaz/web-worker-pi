@@ -11,7 +11,7 @@ const WORKER_INIT_DELAY = 100;
 
 /** Start estimating PI. */
 function start() {
-    MyWorker.initaliseThenDo(_ => { 
+    MyWorker.initialiseThenDo(_ => { 
         toggleUiState();
         UI.reset();
         MyWorker.Instance.addEventListener("message", function(message) { message.data.type === "A" ? UI.updateCanvas(message.data) : UI.updateCounters(message.data); });
@@ -27,7 +27,7 @@ function stop() {
 
 /** Change the number of points calculated before the estimation is updated. */
 function updateBatchSize() {
-    MyWorker.Instance.initaliseThenDo(_ => { !BATCH_TEXTBOX.value ? null : MyWorker.Instance.postMessage("CMD_UPDATE_BATCH " + BATCH_TEXTBOX.value); });
+    MyWorker.initialiseThenDo(_ => { !BATCH_TEXTBOX.value ? null : MyWorker.Instance.postMessage("CMD_UPDATE_BATCH " + BATCH_TEXTBOX.value); });
 }
 
 /** Toggle a 'log' of PI estimations. */
