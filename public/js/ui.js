@@ -1,4 +1,8 @@
-//#region Consts
+/**
+*   Class for updating the UI counters and managing the HTML5 Canvas.  
+*/
+
+// #region Consts
 const CANVAS = document.getElementById("piCanvas");
 const CTX = CANVAS.getContext("2d");
 const WIDTH = 800;
@@ -13,35 +17,42 @@ const STOP_BUTTON = document.getElementById("stop-button");
 const TEXT_LOG = document.getElementById("text-log");
 const NEW_LINE = "\n";
 const EMPTY = "";
-//#endregion
+const WHITE = "#FFFFFF";
+const BLACK = "#000000";
+// #endregion
 
 let loggingEnabled = false;
 
 class MyUI {
+
     constructor() {
         CTX.translate(HALF_WIDTH, HALF_WIDTH); // Translate origin to centre.
         CTX.moveTo(0, 0);
         this.reset();
     }
 
+    // Reset all UI elements to default state and/or value.
     reset() {
-        CTX.fillStyle = "#FFFFFF";
+        CTX.fillStyle = WHITE;
         CTX.fillRect(-HALF_WIDTH, -HALF_WIDTH, WIDTH, WIDTH);
         this.drawCircle();
         this.updateCounters({"totalHits":0, "redHits":0, "blueHits":0,  "estimation":0});
         TEXT_LOG.innerText = "";
     }
 
+    // Toggle start/stop buttons.
     toggleUiState() {
         START_BUTTON.disabled = !START_BUTTON.disabled;
         STOP_BUTTON.disabled = !STOP_BUTTON.disabled;
     }
 
+    // Draw on Canvas at coordinates in postMessage data.
     updateCanvas(data) {
         CTX.fillStyle = data.colour;
         CTX.fillRect(data.y, data.x, 1, 1);
     }
 
+    // Update counters with values in postMessage data.
     updateCounters(data) {
         TOTAL_HITS.innerText = data.totalHits;
         RED_HITS.innerText = data.redHits;
@@ -50,6 +61,7 @@ class MyUI {
         this.log(data.estimation);
     }
 
+    // Toggle a primitive log of PI estimations.
     toggleLogging(enabled) {
         !enabled ? TEXT_LOG.innerText = "" : null; 
         loggingEnabled = enabled;
@@ -57,13 +69,15 @@ class MyUI {
 
     // ---
 
+    // Part of Canvas setup.
     drawCircle() { 
-        CTX.fillStyle = "#000000";
+        CTX.fillStyle = BLACK;
         CTX.beginPath();
         CTX.arc(0, 0, HALF_WIDTH, 0, TWO_PI , true); 
         CTX.stroke();
     }
 
+    // Write text to a the UI 'log'.
     log(entry) {
         loggingEnabled ? TEXT_LOG.innerText = entry + NEW_LINE + TEXT_LOG.innerText : TEXT_LOG.innerText = EMPTY;
     }
