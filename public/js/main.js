@@ -15,7 +15,7 @@ function start() {
         MyWorker.initialiseThenDo(_ => {
         toggleUiState();
         UI.reset();
-        UI.log("Starting...");
+        UI.log("Running...");
         MyWorker.Instance.addEventListener("message", function(message) { message.data.type === "A" ? UI.updateCanvas(message.data) : UI.updateCounters(message.data); });
         MyWorker.Instance.postMessage("CMD_START")
     });
